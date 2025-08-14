@@ -38,14 +38,17 @@ const AuthPage = () => {
     const newErrors = {};
     if (isSignUp) {
       if (step === 1) {
-        if (!formData.firstName) newErrors.firstName = 'First name is required';
-        if (!formData.lastName) newErrors.lastName = 'Last name is required';
+        if (!formData.firstName || formData.firstName.length < 1) newErrors.firstName = 'First name is required';
+        if (!formData.lastName || formData.lastName.length < 1) newErrors.lastName = 'Last name is required';
         if (!formData.email) newErrors.email = 'Email is required';
         else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
       } 
       else if (step === 2) {
         if (!formData.password) newErrors.password = 'Password is required';
         else if (formData.password.length < 6) newErrors.password = 'Password must be at least 6 characters';
+        else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/.test(formData.password)) {
+          newErrors.password = 'Password must contain at least one uppercase letter, one lowercase letter, and one number';
+        }
         if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
       } 
       else if (step === 3) {
@@ -80,7 +83,7 @@ const AuthPage = () => {
           firstName: formData.firstName,
           lastName: formData.lastName,
           email: formData.email,
-          password: formData.password + 'aA1', // Add lowercase, uppercase and number to meet validation
+          password: formData.password, // Use the password as-is since validation is fixed
           phoneNumber: formData.phone ? (formData.phone.startsWith('+') ? formData.phone : '+91' + formData.phone) : '+1234567890', // Add country code if missing
           dateOfBirth: new Date('1990-01-01').toISOString(), // Convert to ISO string
           gender: 'other',

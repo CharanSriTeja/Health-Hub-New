@@ -16,12 +16,12 @@ const handleValidationErrors = (req, res, next) => {
 const validateUserRegistration = [
   body('firstName')
     .trim()
-    .isLength({ min: 2, max: 50 })
-    .withMessage('First name must be between 2 and 50 characters'),
+    .isLength({ min: 1, max: 50 })
+    .withMessage('First name must be between 1 and 50 characters'),
   body('lastName')
     .trim()
-    .isLength({ min: 2, max: 50 })
-    .withMessage('Last name must be between 2 and 50 characters'),
+    .isLength({ min: 1, max: 50 })
+    .withMessage('Last name must be between 1 and 50 characters'),
   body('email')
     .isEmail()
     .normalizeEmail()
@@ -29,7 +29,7 @@ const validateUserRegistration = [
   body('password')
     .isLength({ min: 6 })
     .withMessage('Password must be at least 6 characters long')
-    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/)
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/)
     .withMessage('Password must contain at least one uppercase letter, one lowercase letter, and one number'),
   body('phoneNumber')
     .matches(/^[\+]?[1-9][\d]{0,15}$/)
