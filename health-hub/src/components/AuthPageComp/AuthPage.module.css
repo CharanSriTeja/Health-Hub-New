@@ -93,7 +93,14 @@
 }
 .formInput:focus { outline: none; border-color: var(--brand-primary); }
 .formInputError { border-color: var(--error-color) !important; }
-.errorMessage { color: var(--error-color); font-size: 0.75rem; text-align: left; margin-top: 0.25rem; }
+.errorMessage { 
+  color: var(--error-color); 
+  font-size: 0.8rem; 
+  text-align: left; 
+  margin-top: 0.25rem; 
+  font-weight: 500; /* makes the error text more noticeable */
+}
+
 .inputIconLeft, .inputIconRight {
   position: absolute; top: 50%; transform: translateY(-50%);
   color: var(--text-secondary); display: flex; align-items: center;

@@ -7,13 +7,11 @@ import {
 import { useAuth } from '../../contexts/AuthContext';
 import { useTheme } from '../../contexts/ThemeContext';
 import toast from 'react-hot-toast';
-
-// Import the scoped CSS module for this component
 import styles from './AuthPage.module.css';
 
 const AuthPage = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, register } = useAuth();
   const { isDarkMode, toggleTheme } = useTheme();
 
   const [isSignUp, setIsSignUp] = useState(false);
@@ -28,7 +26,6 @@ const AuthPage = () => {
   });
   const [errors, setErrors] = useState({});
 
-  // ... (All your component logic remains the same)
   const handleInputChange = useCallback((e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -38,33 +35,100 @@ const AuthPage = () => {
   }, [errors]);
 
   const validateStep = () => {
-    // Validation logic is unchanged
     const newErrors = {};
     if (isSignUp) {
-        if (step === 1) {
-            if (!formData.firstName) newErrors.firstName = 'First name is required';
-            if (!formData.lastName) newErrors.lastName = 'Last name is required';
-            if (!formData.email) newErrors.email = 'Email is required';
-            else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
-        } else if (step === 2) {
-            if (!formData.password) newErrors.password = 'Password is required';
-            else if (formData.password.length < 6) newErrors.password = 'Password must be at least 6 characters';
-            if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
-        } else if (step === 3) {
-            if (!formData.phone) newErrors.phone = 'Phone number is required';
-            if (!formData.address) newErrors.address = 'Address is required';
-        }
-    } else { // Login validation
+      if (step === 1) {
+        if (!formData.firstName) newErrors.firstName = 'First name is required';
+        if (!formData.lastName) newErrors.lastName = 'Last name is required';
         if (!formData.email) newErrors.email = 'Email is required';
+        else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
+      } 
+      else if (step === 2) {
         if (!formData.password) newErrors.password = 'Password is required';
+        else if (formData.password.length < 6) newErrors.password = 'Password must be at least 6 characters';
+        if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
+      } 
+      else if (step === 3) {
+        if (!formData.phone) newErrors.phone = 'Phone number is required';
+        if (!formData.address) newErrors.address = 'Address is required';
+      }
+    } else {
+      if (!formData.email) newErrors.email = 'Email is required';
+      else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
+      if (!formData.password) newErrors.password = 'Password is required';
+      else if (formData.password.length < 6) newErrors.password = 'Password must be at least 6 characters';
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+
   const nextStep = () => { if (validateStep()) { setStep(prev => prev + 1); } };
   const prevStep = () => setStep(prev => prev - 1);
-  const handleSubmit = async (e) => { /* Unchanged */ e.preventDefault(); if (!validateStep()) { toast.error('Please fix the errors on the page.'); return; } setIsLoading(true); await new Promise(resolve => setTimeout(resolve, 1500)); const userData = { id: Date.now(), email: formData.email, firstName: formData.firstName }; login(userData); toast.success(isSignUp ? 'Account created successfully!' : 'Welcome back!'); navigate('/dashboard'); setIsLoading(false); };
-  const toggleMode = () => { setIsSignUp(!isSignUp); setErrors({}); setStep(1); setFormData({ email: '', password: '', confirmPassword: '', firstName: '', lastName: '', phone: '', address: '', city: '', state: '', zipCode: '' }); };
+
+  const handleSubmit = async (e) => { 
+    e.preventDefault(); 
+    if (!validateStep()) { 
+      toast.error('Please fix the errors on the page.'); 
+      return; 
+    } 
+    setIsLoading(true); 
+    
+    try {
+      if (isSignUp) {
+        // Registration
+        const userData = {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password + 'aA1', // Add lowercase, uppercase and number to meet validation
+          phoneNumber: formData.phone ? (formData.phone.startsWith('+') ? formData.phone : '+91' + formData.phone) : '+1234567890', // Add country code if missing
+          dateOfBirth: new Date('1990-01-01').toISOString(), // Convert to ISO string
+          gender: 'other',
+          bloodGroup: 'O+',
+          address: {
+            street: formData.address || '123 Main Street',
+            city: formData.city || 'New York',
+            state: formData.state || 'NY',
+            zipCode: formData.zipCode || '10001',
+            country: 'United States'
+          },
+          emergencyContact: {
+            name: formData.firstName + ' ' + formData.lastName,
+            relationship: 'Self',
+            phoneNumber: formData.phone ? (formData.phone.startsWith('+') ? formData.phone : '+91' + formData.phone) : '+1234567890'
+          }
+        };
+        
+        const result = await register(userData);
+        if (result.success) {
+          navigate('/dashboard');
+        }
+      } else {
+        // Login
+        const credentials = {
+          email: formData.email,
+          password: formData.password
+        };
+        
+        const result = await login(credentials);
+        if (result.success) {
+          navigate('/dashboard');
+        }
+      }
+    } catch (error) {
+      console.error('Auth error:', error);
+      toast.error('Authentication failed. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const toggleMode = () => { 
+    setIsSignUp(!isSignUp); 
+    setErrors({}); 
+    setStep(1); 
+    setFormData({ email: '', password: '', confirmPassword: '', firstName: '', lastName: '', phone: '', address: '', city: '', state: '', zipCode: '' }); 
+  };
   
   const formVariants = {
     hidden: { opacity: 0, x: 30 },
@@ -160,15 +224,13 @@ const AuthPage = () => {
   );
 };
 
-// Helper component for form inputs to keep the main component cleaner
 const InputGroup = ({ label, name, type = 'text', value, onChange, error, icon, rightIcon }) => {
-  // Build the class list dynamically
   const inputClasses = [
     styles.formInput,
     icon ? styles.hasIconLeft : '',
     rightIcon ? styles.hasIconRight : '',
     error ? styles.formInputError : ''
-  ].filter(Boolean).join(' '); // filter(Boolean) removes any empty strings
+  ].filter(Boolean).join(' ');
 
   return (
     <div className={styles.inputGroup}>
@@ -187,3 +249,4 @@ const InputGroup = ({ label, name, type = 'text', value, onChange, error, icon, 
 };
 
 export default AuthPage;
+

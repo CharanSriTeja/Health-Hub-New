@@ -72,7 +72,17 @@ const Dashboard = () => {
             <button className={styles.notificationBtn}><Bell /><span className={styles.notificationDot}></span></button>
             <div className={styles.profileMenu}>
               <button className={styles.profileToggle} onClick={() => setIsProfileOpen(!isProfileOpen)}>
-                <img src={`https://i.pravatar.cc/150?u=${user?.email}`} alt="User avatar" className={styles.avatar} />
+                <div className={styles.avatar}>
+                  {user?.firstName && user?.lastName ? (
+                    <span className={styles.avatarText}>
+                      {user.firstName.charAt(0).toUpperCase()}{user.lastName.charAt(0).toUpperCase()}
+                    </span>
+                  ) : (
+                    <span className={styles.avatarText}>
+                      {user?.firstName ? user.firstName.charAt(0).toUpperCase() : 'U'}
+                    </span>
+                  )}
+                </div>
                 <span className={styles.userName}>{user?.firstName || 'User'}</span>
               </button>
               {isProfileOpen && (
