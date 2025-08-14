@@ -1,0 +1,87 @@
+/* ==========================================================
+   HospitalSearch.module.css
+   Scoped styles for the Hospital Search page.
+   ========================================================== */
+
+/* --- PAGE LAYOUT & HEADER --- */
+.hospitalsPage { background-color: var(--bg-primary); min-height: 100vh; }
+.pageHeader { background-color: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1rem 0; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+.headerContent, .headerLeft, .logo { display: flex; align-items: center; gap: 1rem; }
+.headerContent { justify-content: space-between; }
+.logoIconWrapper { width: 40px; height: 40px; background: linear-gradient(45deg, var(--primary-color), var(--purple-color)); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; }
+.logoText { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); }
+.pageContent { padding: 2rem 1rem; }
+
+/* --- SEARCH & FILTERS --- */
+.searchFilterSection { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+.searchBarWrapper { position: relative; flex-grow: 1; min-width: 300px; }
+.searchIcon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); }
+.searchInput {
+  width: 100%; padding: 0.75rem 1rem 0.75rem 3rem; border-radius: 0.5rem;
+  background-color: var(--bg-secondary); border: 1px solid var(--border-color);
+  color: var(--text-primary); font-size: 1rem; box-sizing: border-box;
+}
+.searchInput:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); }
+.filterToggleBtn { flex-shrink: 0; }
+.filterPanel {
+  background-color: var(--bg-secondary); border: 1px solid var(--border-color);
+  border-radius: 0.5rem; padding: 1.5rem; display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem; margin-bottom: 1.5rem;
+}
+
+/* --- HOSPITAL CARDS --- */
+.hospitalsGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1.5rem; }
+.hospitalCard {
+  background-color: var(--bg-secondary); border: 1px solid var(--border-color);
+  border-radius: 0.75rem; display: flex; flex-direction: column; transition: all 0.2s ease;
+}
+.hospitalCard:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.cardHeader { display: flex; justify-content: space-between; align-items: flex-start; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border-color); }
+.cardTitleGroup h3 { font-size: 1.1rem; margin: 0 0 0.25rem; color: var(--text-primary); font-weight: 600; }
+.cardTitleGroup p { display: flex; align-items: center; gap: 0.25rem; margin: 0; color: var(--text-secondary); font-size: 0.9rem;}
+.likeButton {
+  background: none; border: 1px solid var(--border-color); border-radius: 50%;
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  color: var(--text-secondary); cursor: pointer; transition: all 0.2s;
+}
+.likeButton:hover { background-color: rgba(239, 68, 68, 0.1); color: var(--red-color); }
+.likeButton.liked { background-color: var(--red-color); color: white; border-color: var(--red-color); }
+.cardBody { padding: 1.5rem; flex-grow: 1; }
+.cardMeta { display: flex; gap: 1rem; margin-bottom: 1rem; font-size: 0.9rem; }
+.rating { display: flex; align-items: center; gap: 0.25rem; color: var(--text-secondary); }
+.rating .iconXs { color: var(--yellow-color); }
+.availability { display: flex; align-items: center; gap: 0.25rem; padding: 0.25rem 0.5rem; border-radius: 99px; font-weight: 500; }
+.available { background-color: rgba(34, 197, 94, 0.1); color: var(--green-color); }
+.unavailable { background-color: rgba(239, 68, 68, 0.1); color: var(--red-color); }
+.description { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; }
+.facilities h4 { font-size: 0.9rem; font-weight: 600; margin: 0 0 0.5rem; color: var(--text-primary); }
+.tagList { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tag { background-color: var(--bg-tertiary); padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; color: var(--text-secondary); }
+.cardFooter { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-top: 1px solid var(--border-color); background-color: var(--bg-tertiary); border-radius: 0 0 0.75rem 0.75rem; }
+.contactLinks { display: flex; gap: 1rem; }
+.contactLinks a, .contactLinks button { display: flex; align-items: center; gap: 0.25rem; color: var(--text-secondary); text-decoration: none; background: none; border: none; cursor: pointer; }
+.contactLinks a:hover, .contactLinks button:hover { color: var(--primary-color); }
+
+/* --- SHARED & UTILITY STYLES --- */
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 500; cursor: pointer; border: 1px solid transparent; transition: background-color 0.2s; }
+.btnPrimary { background-color: var(--primary-color); color: white; }
+.btnPrimary:hover { background-color: var(--primary-hover); }
+.btnPrimary:disabled { background-color: #9ca3af; cursor: not-allowed; }
+[data-theme="dark"] .btnPrimary:disabled { background-color: #4b5563; }
+.iconButton { background: none; border: none; padding: 0.5rem; border-radius: 0.5rem; cursor: pointer; color: var(--text-secondary); }
+.iconButton:hover { background-color: var(--bg-tertiary); }
+.formGroup { display: flex; flex-direction: column; }
+.formLabel { margin-bottom: 0.5rem; font-weight: 500; color: var(--text-primary); font-size: 0.9rem; }
+.formSelect { width: 100%; padding: 0.75rem; border-radius: 0.5rem; background-color: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary); }
+.emptyState { text-align: center; padding: 4rem 0; color: var(--text-secondary); }
+.emptyIcon { width: 48px; height: 48px; margin: 0 auto 1rem; }
+
+/* --- RESPONSIVE STYLES --- */
+@media (max-width: 768px) {
+  .searchFilterSection { flex-direction: column; }
+  .hospitalsGrid { grid-template-columns: 1fr; }
+  .cardFooter { flex-direction: column; align-items: stretch; gap: 1rem; }
+  .logoText { display: none; }
+}

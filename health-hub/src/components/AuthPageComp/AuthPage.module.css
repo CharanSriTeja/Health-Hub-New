@@ -1,0 +1,138 @@
+/* ==========================================================
+   AuthPage.module.css
+   Scoped styles for the Authentication page.
+   ========================================================== */
+
+.authPageContainer {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #e0e7ff, #f3e8ff);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  font-family: var(--font-sans);
+  box-sizing: border-box;
+}
+[data-theme="dark"] .authPageContainer {
+  background: linear-gradient(to bottom right, #1e293b, #111827);
+}
+.authPageContent {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+/* --- Header & Logo --- */
+.pageHeader { margin-bottom: 2rem; }
+.logo { display: flex; justify-content: center; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+.logoIconWrapper {
+  width: 3.5rem; height: 3.5rem; border-radius: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(to right, var(--brand-primary), var(--brand-secondary));
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+.logoText { font-size: 2.25rem; font-weight: 700; color: var(--text-primary); }
+.headerTitle { font-size: 1.5rem; font-weight: 600; margin: 0; color: var(--text-primary); }
+.headerSubtitle { font-size: 1rem; color: var(--text-secondary); margin: 0.25rem 0 0; }
+
+/* --- Theme Toggle --- */
+.themeToggle {
+  position: absolute; top: 1rem; right: 1rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem; padding: 0.5rem; cursor: pointer;
+  font-size: 1.25rem; transition: all 0.2s;
+}
+[data-theme="dark"] .themeToggle {
+    background-color: rgba(31, 41, 55, 0.5);
+}
+.themeToggle:hover { transform: scale(1.1) rotate(10deg); }
+
+/* --- Auth Card --- */
+.authCard {
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem; padding: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); overflow: hidden;
+}
+[data-theme="dark"] .authCard {
+  background-color: rgba(31, 41, 55, 0.6);
+  border: 1px solid rgba(55, 65, 81, 0.5);
+}
+.authForm { display: flex; flex-direction: column; gap: 1.25rem; }
+
+/* --- Progress Bar --- */
+.progressBarContainer {
+  background-color: var(--border-color);
+  border-radius: 99px; height: 8px; width: 100%; margin-bottom: 1.5rem;
+}
+.progressBar {
+  background-color: var(--brand-primary); height: 100%;
+  border-radius: 99px; transition: width 0.4s ease-out;
+}
+
+/* --- Form Elements --- */
+.inputGroup { position: relative; }
+.formLabel {
+  font-size: 0.875rem; font-weight: 500; color: var(--text-secondary);
+  position: absolute; top: 0.875rem; left: 1rem; transition: all 0.2s;
+  pointer-events: none;
+}
+.hasIconLeft + .formLabel { left: 2.75rem; }
+.formInput:focus + .formLabel,
+.formInput:not(:placeholder-shown) + .formLabel {
+  top: -0.625rem; left: 0.75rem; font-size: 0.75rem;
+  color: var(--brand-primary); background-color: var(--bg-primary); padding: 0 0.25rem;
+}
+.inputWrapper { position: relative; }
+.formInput {
+  width: 100%; padding: 0.875rem 1rem; border-radius: 0.5rem;
+  background-color: var(--bg-primary); border: 1px solid var(--border-color);
+  color: var(--text-primary); font-size: 1rem; box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+.formInput:focus { outline: none; border-color: var(--brand-primary); }
+.formInputError { border-color: var(--error-color) !important; }
+.errorMessage { color: var(--error-color); font-size: 0.75rem; text-align: left; margin-top: 0.25rem; }
+.inputIconLeft, .inputIconRight {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  color: var(--text-secondary); display: flex; align-items: center;
+}
+.inputIconLeft { left: 1rem; }
+.inputIconRight { right: 1rem; background: none; border: none; cursor: pointer; padding: 0;}
+.hasIconLeft { padding-left: 2.75rem; }
+.hasIconRight { padding-right: 2.75rem; }
+
+.formGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.formActions { display: flex; gap: 0.75rem; }
+.formActions .btn { flex: 1; }
+
+/* --- Buttons & Links --- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.75rem 1rem; border-radius: 0.5rem; font-weight: 600;
+  font-size: 1rem; border: 1px solid transparent; transition: all 0.2s;
+  cursor: pointer;
+}
+.btnFull { width: 100%; }
+.btnPrimary { background-color: var(--brand-primary); color: white; }
+.btnPrimary:hover { background-color: var(--brand-hover); }
+.btn:disabled { background-color: #9ca3af; cursor: not-allowed; }
+.btnSecondary { background-color: transparent; border-color: var(--border-color); color: var(--text-primary); }
+.btnSecondary:hover { background-color: var(--bg-secondary); }
+[data-theme="dark"] .btnSecondary:hover { background-color: #374151; }
+
+.toggleMode { margin-top: 1.5rem; color: var(--text-secondary); }
+.toggleLink {
+  background: none; border: none; color: var(--brand-primary);
+  font-weight: 600; cursor: pointer; margin-left: 0.25rem;
+}
+.toggleLink:hover { text-decoration: underline; }
+
+/* --- Spinner --- */
+.spinner {
+  width: 1.25rem; height: 1.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.3); border-top-color: white;
+  border-radius: 50%; animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }

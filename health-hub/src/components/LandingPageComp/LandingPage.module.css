@@ -1,0 +1,321 @@
+/* ==========================================================
+   LandingPage.module.css
+   Elegant and engaging styles for the Landing Page.
+   ========================================================== */
+
+/* --- 1. BASE & LAYOUT --- */
+.landingPage {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+}
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.sectionHeader h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.sectionHeader p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* --- 2. HEADER --- */
+.stickyHeader {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 0;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+[data-theme="dark"] .stickyHeader {
+  background-color: rgba(17, 24, 39, 0.8);
+}
+.headerNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+.logoIconWrapper {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, var(--brand-primary), var(--brand-hover));
+  color: white;
+}
+.logoText {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.themeToggleButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.themeToggleButton:hover {
+  background-color: var(--bg-tertiary);
+}
+
+/* --- 3. HERO SECTION --- */
+.heroSection {
+  text-align: center;
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+.heroBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.05), transparent 70%);
+}
+[data-theme="dark"] .heroBg {
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.15), transparent 70%);
+}
+.heroContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+.heroContent h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  max-width: 800px;
+  margin: 0;
+  line-height: 1.2;
+}
+.heroContent p {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0;
+}
+.textGradientAnimated {
+  background: linear-gradient(90deg, var(--brand-primary), var(--danger-color), var(--brand-primary));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-animation 4s ease infinite;
+}
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- 4. FEATURES SECTION --- */
+.featuresSection {
+  padding: 5rem 0;
+  background-color: var(--bg-secondary);
+}
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.featureCard {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  text-align: left;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.featureCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+.featureCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.featureIconWrapper {
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(79, 70, 229, 0.1);
+  color: var(--brand-primary);
+}
+[data-theme="dark"] .featureIconWrapper {
+  background-color: rgba(79, 70, 229, 0.2);
+}
+.featureCard h3 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+.featureCard p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* --- 5. BENEFITS SECTION --- */
+.benefitsSection {
+  padding: 5rem 0;
+}
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .benefitsGrid { grid-template-columns: 1fr 1fr; }
+}
+.benefitsContent h2 {
+  font-size: 2.5rem;
+}
+.benefitsContent p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+}
+.benefitsList {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.benefitItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+}
+.benefitIcon {
+  color: var(--success-color);
+  flex-shrink: 0;
+}
+.benefitVisual img {
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-lg);
+}
+
+/* --- 6. CTA SECTION --- */
+.ctaSection {
+  padding: 5rem 0;
+}
+.ctaCard {
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-hover));
+  color: white;
+  border-radius: 1rem;
+  padding: 4rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.ctaCard h2 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+.ctaCard p {
+  max-width: 500px;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* --- 7. FOOTER --- */
+.footer {
+  padding: 2rem 0;
+  background-color: var(--bg-secondary);
+  text-align: center;
+}
+.footer p {
+  margin: 0;
+}
+.footerSubtitle {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* --- 8. BUTTONS & ICONS --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btnPrimary {
+  background-color: var(--brand-primary);
+  color: white;
+}
+.btnPrimary:hover {
+  background-color: var(--brand-hover);
+}
+.btnLight {
+  background-color: white;
+  color: var(--brand-primary);
+}
+.btnLg {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+.icon {
+  width: 24px;
+  height: 24px;
+}
+.iconSm {
+  width: 16px;
+  height: 16px;
+}
+
+/* --- 9. RESPONSIVE STYLES --- */
+@media (max-width: 768px) {
+  .heroContent h1 { font-size: 2.5rem; }
+  .benefitVisual { order: -1; }
+  .sectionHeader h2, .benefitsContent h2, .ctaCard h2 { font-size: 2rem; }
+}

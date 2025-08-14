@@ -1,0 +1,92 @@
+/* ==========================================================
+   Prescriptions.module.css
+   Scoped styles for the Prescriptions page.
+   ========================================================== */
+
+/* --- BASE & LAYOUT --- */
+.prescriptionsPage {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  padding: 2rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* --- HEADER --- */
+.pageHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+.pageHeader h1 { font-size: 2.25rem; font-weight: 700; margin: 0; }
+.pageHeader .subtitle { font-size: 1.125rem; color: var(--secondary-color); margin-top: 0.25rem; }
+
+/* --- TOOLBAR (SEARCH & TABS) --- */
+.toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; gap: 1.5rem; flex-wrap: wrap; }
+.searchBarWrapper { position: relative; flex-grow: 1; }
+.searchIcon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--secondary-color); }
+.searchInput { width: 100%; padding: 12px 12px 12px 40px; border-radius: 8px; border: 1px solid var(--border-color); background-color: var(--card-background); color: var(--text-color); font-size: 1rem; box-sizing: border-box; }
+.tabs { display: flex; gap: 0.5rem; background-color: var(--card-background); padding: 5px; border-radius: 8px; border: 1px solid var(--border-color); }
+.tabButton { padding: 8px 16px; border: none; background-color: transparent; color: var(--secondary-color); font-weight: 500; border-radius: 6px; cursor: pointer; transition: all 0.2s ease-in-out; }
+.tabButton.active { background-color: var(--primary-color); color: white; }
+.tabButton:not(.active):hover { background-color: var(--background-color); }
+
+/* --- PRESCRIPTION GRID & CARDS --- */
+.prescriptionsGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+.card { background-color: var(--card-background); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); display: flex; flex-direction: column; transition: all 0.3s; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+.cardHeader { display: flex; justify-content: space-between; align-items: flex-start; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border-color); }
+.doctorInfo { display: flex; align-items: center; gap: 0.75rem; }
+.doctorInfo h4 { margin: 0; font-size: 1.125rem; }
+.doctorInfo p { margin: 0; color: var(--secondary-color); font-size: 0.875rem; }
+.statusBadge { padding: 4px 12px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; text-transform: capitalize; }
+.active { background-color: #d1fae5; color: #065f46; }
+.completed { background-color: #dbeafe; color: #1e40af; }
+.expired { background-color: #fee2e2; color: #991b1b; }
+.cardBody { padding: 1rem 1.5rem; flex-grow: 1; }
+.cardBody h5 { margin-top: 0; margin-bottom: 0.75rem; font-size: 0.875rem; color: var(--secondary-color); text-transform: uppercase; }
+.medicationList { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+.medicationList li { display: flex; align-items: center; gap: 0.75rem; }
+.medicationList li strong { font-weight: 500; }
+.medicationList li span { color: var(--secondary-color); font-size: 0.875rem; margin-left: 0.5rem; }
+.cardFooter { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-top: 1px solid var(--border-color); background-color: var(--background-color); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
+.cardFooter p { margin: 0; display: flex; align-items: center; gap: 0.5rem; color: var(--secondary-color); font-size: 0.875rem; }
+
+/* --- BUTTONS & ICONS --- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 10px 20px; font-size: 1rem; font-weight: 500; border-radius: 8px; border: 1px solid transparent; cursor: pointer; transition: all 0.2s; }
+.btnPrimary { background-color: var(--primary-color); color: white; }
+.btnPrimary:hover { background-color: #4338ca; }
+.btnSecondary { background-color: var(--card-background); color: var(--text-color); border-color: var(--border-color); }
+.btnSecondary:hover { background-color: var(--background-color); }
+.btnDanger { background-color: var(--danger-color); color: white; }
+.btnDanger:hover { background-color: #dc2626; }
+.iconButton { background: none; border: none; padding: 4px; cursor: pointer; color: var(--secondary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.iconButton:hover { color: var(--text-color); background-color: var(--background-color); }
+.icon { color: var(--primary-color); }
+.iconSm { width: 16px; height: 16px; }
+
+/* --- MODAL --- */
+.modalOverlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: #e3e1e8; display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.modalContent { background-color: var(--card-background); padding: 1.5rem; border-radius: 12px; width: 90%; max-width: 600px; max-height: 90vh; overflow-y: auto; }
+.modalHeader { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1rem; }
+.modalHeader h2 { margin: 0; font-size: 1.5rem; }
+.modalBody { display: flex; flex-direction: column; gap: 1.5rem; }
+.detailSection h4 { margin: 0 0 0.5rem 0; color: var(--secondary-color); font-size: 0.875rem; text-transform: uppercase; }
+.infoBox { background-color: var(--background-color); padding: 1rem; border-radius: 8px; }
+.infoBox p { margin: 0.5rem 0; }
+.modalMedList li div { display: flex; flex-direction: column; }
+.modalMedList li span { margin-left: 0; }
+.modalFooter { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 1.5rem; }
+
+/* --- EMPTY STATE --- */
+.emptyState { text-align: center; padding: 4rem 2rem; margin-top: 2rem; border: 2px dashed var(--border-color); border-radius: 12px; }
+.emptyIcon { width: 48px; height: 48px; color: var(--secondary-color); margin-bottom: 1rem; }
+.emptyState h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.emptyState p { color: var(--secondary-color); }
+
+/* --- RESPONSIVENESS --- */
+@media (max-width: 768px) {
+  .prescriptionsPage { padding: 1rem; }
+  .pageHeader { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .toolbar { flex-direction: column; align-items: stretch; }
+}
+
+

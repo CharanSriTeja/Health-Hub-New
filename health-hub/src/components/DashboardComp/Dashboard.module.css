@@ -1,0 +1,145 @@
+/* ==========================================================
+   Dashboard.module.css
+   Scoped styles for the main Dashboard page.
+   ========================================================== */
+
+/* --- DASHBOARD LAYOUT --- */
+.dashboardLayout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+}
+.mainArea {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+  width: 260px;
+  background-color: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  transition: transform 0.3s ease-in-out;
+  flex-shrink: 0;
+}
+.sidebarHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+.logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+.logoIconWrapper { width: 40px; height: 40px; background: linear-gradient(45deg, var(--primary-color), var(--purple-color)); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; }
+.logoText { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); }
+.sidebarNav { display: flex; flex-direction: column; gap: 0.5rem; }
+.sidebarNavItem {
+  display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem;
+  border-radius: 0.5rem; text-decoration: none; color: var(--text-secondary);
+  font-weight: 500; font-size: 0.9rem; border: none; background: none; cursor: pointer;
+  transition: all 0.2s ease;
+}
+.sidebarNavItem:hover { background-color: var(--bg-tertiary); color: var(--text-primary); }
+.sidebarNavItem.active { background-color: var(--primary-color); color: white; }
+.sidebarFooter { margin-top: auto; }
+
+/* --- HEADER --- */
+.dashboardHeader {
+  padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center;
+  background-color: var(--bg-secondary); border-bottom: 1px solid var(--border-color);
+  position: sticky; top: 0; z-index: 10;
+}
+.headerActions { display: flex; align-items: center; gap: 1rem; }
+.notificationBtn { position: relative; background: none; border: none; cursor: pointer; color: var(--text-secondary); }
+.notificationDot { position: absolute; top: 0; right: 0; width: 8px; height: 8px; background-color: var(--red-color); border-radius: 50%; }
+.themeToggle { background: none; border: none; cursor: pointer; font-size: 1.25rem; }
+
+/* --- PROFILE MENU --- */
+.profileMenu { position: relative; }
+.profileToggle { display: flex; align-items: center; gap: 0.5rem; background: none; border: none; cursor: pointer; }
+.avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+.userName { font-weight: 500; color: var(--text-primary); }
+.profileDropdown {
+  position: absolute; top: 120%; right: 0;
+  background-color: var(--bg-secondary); border: 1px solid var(--border-color);
+  border-radius: 0.5rem; box-shadow: var(--shadow-lg);
+  width: 150px; overflow: hidden; z-index: 20;
+}
+.profileDropdown a, .profileDropdown button {
+  display: block; width: 100%; text-align: left; padding: 0.75rem 1rem;
+  background: none; border: none; cursor: pointer; color: var(--text-secondary);
+  text-decoration: none; font-size: 0.9rem;
+}
+.profileDropdown a:hover, .profileDropdown button:hover {
+  background-color: var(--bg-tertiary); color: var(--primary-color);
+}
+
+/* --- MAIN CONTENT --- */
+.mainContent { padding: 2rem; }
+.mainContent h1 { font-size: 2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
+.mainContent h2 { font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem; }
+.subtitle { color: var(--text-secondary); margin-bottom: 2rem; }
+.sectionTitle { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.sectionTitle a { color: var(--primary-color); text-decoration: none; font-weight: 500; }
+
+.statsGrid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 2rem; }
+.statCard {
+  background-color: var(--bg-secondary); border: 1px solid var(--border-color);
+  border-radius: 0.75rem; padding: 1.5rem; display: flex; justify-content: space-between; align-items: center;
+}
+.statCardText p { margin: 0 0 0.25rem 0; color: var(--text-secondary); }
+.statCardText span { font-size: 2rem; font-weight: 700; color: var(--text-primary); }
+.statCardIcon { padding: 0.75rem; border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; }
+.iconBgBlue { background: var(--primary-color); }
+.iconBgOrange { background: var(--orange-color); }
+.iconBgPurple { background: var(--purple-color); }
+
+.quickActions { margin-bottom: 2rem; }
+.quickActionsGrid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.actionCard {
+  background-color: var(--bg-tertiary); border: none; border-radius: 0.75rem;
+  padding: 1.5rem; text-align: center; cursor: pointer; transition: all 0.2s ease;
+}
+.actionCard:hover { background-color: var(--primary-color); color: white; }
+.actionCard:hover .actionCardIcon { background-color: white; color: var(--primary-color); }
+.actionCardIcon {
+  width: 50px; height: 50px; margin: 0 auto 1rem auto;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background-color: var(--bg-secondary); color: var(--primary-color); transition: all 0.2s ease;
+}
+.actionCard h3 { font-size: 1rem; margin: 0; color: inherit; }
+
+.appointmentsList { display: flex; flex-direction: column; gap: 1rem; }
+.card { background-color: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 0.75rem; padding: 1rem; }
+.appointmentCard { display: flex; justify-content: space-between; align-items: center; transition: all 0.2s ease; }
+.appointmentCard:hover { transform: scale(1.02); box-shadow: var(--shadow-md); }
+.appointmentDetails { display: flex; align-items: center; gap: 1rem; }
+.appointmentDetails h3 { font-size: 1rem; margin: 0 0 0.25rem 0; color: var(--text-primary); }
+.appointmentDetails p { margin: 0; color: var(--text-secondary); font-size: 0.9rem; }
+.appointmentTime { font-style: italic; }
+
+.statusIcon { padding: 0.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.statusBadge { padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; text-transform: capitalize; }
+.upcoming { background-color: rgba(59, 130, 246, 0.1); color: var(--primary-color); }
+.completed { background-color: rgba(34, 197, 94, 0.1); color: var(--green-color); }
+.cancelled { background-color: rgba(239, 68, 68, 0.1); color: var(--red-color); }
+
+/* --- RESPONSIVE & MOBILE STYLES --- */
+.mobileMenuToggle { display: none; background: none; border: none; cursor: pointer; color: var(--text-secondary); }
+.mobileCloseBtn { display: none; background: none; border: none; cursor: pointer; color: var(--text-secondary); }
+.mobileOverlay { display: none; }
+
+@media (max-width: 1024px) {
+  .sidebar { position: fixed; left: 0; top: 0; bottom: 0; z-index: 100; transform: translateX(-100%); }
+  .sidebar.isOpen { transform: translateX(0); }
+  .mobileMenuToggle, .mobileCloseBtn { display: block; }
+  .headerActions { margin-left: auto; }
+  .userName { display: none; }
+  .mobileOverlay { position: fixed; inset: 0; background-color: rgba(0,0,0,0.5); z-index: 99; display: block; }
+}
+
+@media (max-width: 768px) {
+  .statsGrid { grid-template-columns: 1fr; }
+  .mainContent { padding: 1rem; }
+  .mainContent h1 { font-size: 1.5rem; }
+  .mainContent h2 { font-size: 1.25rem; }
+}

@@ -1,0 +1,307 @@
+/* ==========================================================
+   Profile.module.css
+   Scoped styles for the Profile & Settings page. (Corrected)
+   ========================================================== */
+
+/* --- 1. PAGE LAYOUT & CONTAINER --- */
+.profilePage {
+  background-color: var(--bg-secondary);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+.profileContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.profileHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.profileHeader h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.profileHeader p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+/* --- 2. GRID SYSTEM --- */
+.profileGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 2rem;
+}
+@media (min-width: 1024px) {
+  .profileGrid {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+.profileMainColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.profileSidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* --- 3. CARDS --- */
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.cardHeader h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+.card--sidebar {
+  padding: 1.25rem;
+}
+.sidebarCardTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+  color: var(--text-primary);
+}
+
+/* --- 4. USER INFO SECTION --- */
+.userInfoHeader {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.avatarWrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+.avatar {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 9999px;
+  object-fit: cover;
+  border: 4px solid var(--bg-card);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.avatarEditButton {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  padding: 0.5rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+.avatarEditButton:hover {
+  color: var(--brand-primary);
+  background-color: var(--bg-tertiary);
+}
+.userEmail {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* --- 5. INFO GRID & FIELDS (VIEW & EDIT) --- */
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+.infoField {
+  display: flex;
+  flex-direction: column;
+}
+.fieldLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+.fieldDisplay {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+}
+.fieldIcon {
+  color: var(--text-secondary);
+}
+.fieldInput {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+.fieldInput:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+/* --- 6. STATS GRID --- */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+@media (min-width: 640px) {
+  .statsGrid { grid-template-columns: repeat(4, 1fr); }
+}
+.statCard {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.statIconWrapper {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+/* Stat Card Colors */
+.statCard--blue .statIconWrapper { background-color: var(--info-color); }
+.statCard--green .statIconWrapper { background-color: var(--success-color); }
+.statCard--purple .statIconWrapper { background-color: #8b5cf6; }
+.statCard--red .statIconWrapper { background-color: var(--danger-color); }
+
+.statValue {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-primary);
+}
+.statLabel {
+  color: var(--text-secondary);
+  margin: 0.25rem 0 0;
+}
+
+/* --- 7. SIDEBAR & SETTINGS --- */
+.themeToggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.themeToggleLabel {
+  font-weight: 500;
+}
+.switch {
+  width: 44px;
+  height: 24px;
+  background-color: var(--bg-tertiary);
+  border-radius: 9999px;
+  padding: 4px;
+  display: flex;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.switch.active {
+  background-color: var(--brand-primary);
+  justify-content: flex-end;
+}
+.switchHandle {
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border-radius: 50%;
+}
+.quickActionBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background: none;
+  border: none;
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s, color 0.2s;
+}
+.quickActionBtn:hover {
+  background-color: var(--bg-tertiary);
+}
+.logoutBtn {
+  color: var(--danger-color);
+}
+.logoutBtn:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* --- 8. BUTTONS & ACTIONS --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btnPrimary { background-color: var(--brand-primary); color: white; }
+.btnPrimary:hover { background-color: var(--brand-hover); }
+.btnSuccess { background-color: var(--success-color); color: white; }
+.btnSuccess:hover { background-color: #059669; }
+
+/* === THE FIX IS HERE === */
+.btnSecondary {
+  /* Use tertiary background for contrast against the card background */
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+.btnSecondary:hover {
+  /* Darken slightly on hover for feedback */
+  background-color: var(--border-color);
+}
+
+.formActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  justify-content: flex-end;
+}
+
