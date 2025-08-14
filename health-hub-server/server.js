@@ -14,6 +14,7 @@ const healthRecordRoutes = require('./routes/healthRecordRoutes');
 const prescriptionRoutes = require('./routes/prescriptionRoutes');
 const labReportRoutes = require('./routes/labReportRoutes');
 const hospitalRoutes = require('./routes/hospitalRoutes');
+const doctorRoutes = require('./routes/doctorRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -58,6 +59,7 @@ app.use('/api/health-records', healthRecordRoutes);
 app.use('/api/prescriptions', prescriptionRoutes);
 app.use('/api/lab-reports', labReportRoutes);
 app.use('/api/hospitals', hospitalRoutes);
+app.use('/api/doctors', doctorRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

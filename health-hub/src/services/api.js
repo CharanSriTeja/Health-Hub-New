@@ -77,6 +77,9 @@ export const healthRecordAPI = {
   getHealthRecordById: (id) => api.get(`/health-records/${id}`),
   updateHealthRecord: (id, recordData) => api.put(`/health-records/${id}`, recordData),
   deleteHealthRecord: (id) => api.delete(`/health-records/${id}`),
+  shareHealthRecord: (id, shareData) => api.post(`/health-records/${id}/share`, shareData),
+  exportHealthRecords: (params) => api.get('/health-records/export', { params }),
+  getHealthRecordStats: () => api.get('/health-records/stats'),
 };
 
 // Prescription API calls
@@ -86,6 +89,9 @@ export const prescriptionAPI = {
   getPrescriptionById: (id) => api.get(`/prescriptions/${id}`),
   updatePrescription: (id, prescriptionData) => api.put(`/prescriptions/${id}`, prescriptionData),
   deletePrescription: (id) => api.delete(`/prescriptions/${id}`),
+  sharePrescription: (id, shareData) => api.post(`/prescriptions/${id}/share`, shareData),
+  exportPrescriptions: (params) => api.get('/prescriptions/export', { params }),
+  getPrescriptionStats: () => api.get('/prescriptions/stats'),
 };
 
 // Lab Reports API calls
@@ -95,6 +101,10 @@ export const labReportAPI = {
   getLabReportById: (id) => api.get(`/lab-reports/${id}`),
   updateLabReport: (id, reportData) => api.put(`/lab-reports/${id}`, reportData),
   deleteLabReport: (id) => api.delete(`/lab-reports/${id}`),
+  downloadLabReport: (id) => api.get(`/lab-reports/${id}/download`, { responseType: 'blob' }),
+  viewLabReport: (id) => api.get(`/lab-reports/${id}/view`),
+  shareLabReport: (id, shareData) => api.post(`/lab-reports/${id}/share`, shareData),
+  getLabReportStats: () => api.get('/lab-reports/stats'),
 };
 
 // Hospital API calls
@@ -105,6 +115,18 @@ export const hospitalAPI = {
   updateHospital: (id, hospitalData) => api.put(`/hospitals/${id}`, hospitalData),
   deleteHospital: (id) => api.delete(`/hospitals/${id}`),
   searchNearby: (params) => api.get('/hospitals/search-nearby', { params }),
+};
+
+// Doctor API calls
+export const doctorAPI = {
+  createDoctor: (doctorData) => api.post('/doctors', doctorData),
+  getAllDoctors: (params) => api.get('/doctors', { params }),
+  getDoctorById: (id) => api.get(`/doctors/${id}`),
+  getDoctorsByHospital: (hospitalId, params) => api.get(`/doctors/hospital/${hospitalId}`, { params }),
+  getAvailableSlots: (doctorId, params) => api.get(`/doctors/${doctorId}/available-slots`, { params }),
+  updateDoctor: (id, doctorData) => api.put(`/doctors/${id}`, doctorData),
+  deleteDoctor: (id) => api.delete(`/doctors/${id}`),
+  getDoctorStats: () => api.get('/doctors/stats'),
 };
 
 export default api;

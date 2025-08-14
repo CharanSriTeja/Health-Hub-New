@@ -127,6 +127,167 @@
 .noReportsPlaceholder svg { margin: 0 auto 1rem; opacity: 0.5; }
 .noReportsPlaceholder h3 { font-size: 1.125rem; font-weight: 600; color: var(--text-primary); }
 
+/* --- LOADING STATE --- */
+.loadingState { 
+  text-align: center; 
+  padding: 4rem 2rem; 
+  color: var(--text-secondary); 
+}
+.spinner { 
+  width: 40px; 
+  height: 40px; 
+  border: 3px solid var(--border-color); 
+  border-top: 3px solid var(--brand-primary); 
+  border-radius: 50%; 
+  animation: spin 1s linear infinite; 
+  margin: 0 auto 1rem; 
+}
+@keyframes spin { 
+  0% { transform: rotate(0deg); } 
+  100% { transform: rotate(360deg); } 
+}
+
+/* --- MODAL UPDATES --- */
+.modalOverlay { 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  z-index: 1000; 
+  padding: 1rem; 
+  backdrop-filter: blur(4px);
+}
+.modalBody { 
+  padding: 1.5rem; 
+}
+.modalActions { 
+  display: flex; 
+  gap: 1rem; 
+  justify-content: flex-end; 
+  margin-top: 2rem; 
+  padding-top: 1.5rem; 
+  border-top: 1px solid var(--border-color); 
+}
+.detailRow { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 0.5rem 0; 
+  border-bottom: 1px solid var(--border-color); 
+}
+.detailRow:last-child { 
+  border-bottom: none; 
+}
+.detailSection { 
+  margin-top: 1rem; 
+}
+.detailSection h4 { 
+  margin: 0 0 0.5rem 0; 
+  color: var(--text-secondary); 
+  font-size: 0.875rem; 
+  text-transform: uppercase; 
+}
+.iconButton { 
+  background: none; 
+  border: none; 
+  padding: 0.5rem; 
+  cursor: pointer; 
+  color: var(--text-secondary); 
+  border-radius: 50%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  transition: background-color 0.2s; 
+}
+.iconButton:hover { 
+  background-color: rgba(0, 0, 0, 0.05); 
+}
+
+/* --- FORM STYLES --- */
+.formGroup { 
+  margin-bottom: 1.5rem; 
+}
+.formRow { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 1rem; 
+}
+.formGroup label { 
+  display: block; 
+  margin-bottom: 0.5rem; 
+  color: var(--text-primary); 
+  font-weight: 500; 
+}
+.formInput, .formTextarea { 
+  width: 100%; 
+  padding: 0.75rem; 
+  border-radius: 0.5rem; 
+  background-color: var(--bg-secondary); 
+  border: 1px solid var(--border-color); 
+  color: var(--text-primary); 
+  font-size: 0.9rem; 
+  box-sizing: border-box; 
+  transition: border-color 0.2s; 
+}
+.formInput:focus, .formTextarea:focus { 
+  outline: none; 
+  border-color: var(--brand-primary); 
+}
+.formTextarea { 
+  resize: vertical; 
+  min-height: 80px; 
+}
+
+/* --- FILE UPLOAD AREA --- */
+.fileUploadArea { 
+  border: 2px dashed var(--border-color); 
+  border-radius: 0.75rem; 
+  padding: 2rem; 
+  text-align: center; 
+  transition: border-color 0.2s, background-color 0.2s; 
+  position: relative; 
+  cursor: pointer; 
+}
+.fileUploadArea.dragging { 
+  border-color: var(--brand-primary); 
+  background-color: rgba(79, 70, 229, 0.05); 
+}
+.fileUploadArea.hasFile { 
+  border-color: #16a34a; 
+  background-color: rgba(22, 163, 74, 0.05); 
+}
+.fileInput { 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  opacity: 0; 
+  cursor: pointer; 
+}
+.fileUploadArea p { 
+  margin: 0.5rem 0; 
+  color: var(--text-primary); 
+}
+.fileUploadArea span { 
+  font-size: 0.75rem; 
+  color: var(--text-secondary); 
+}
+
+/* --- BUTTON VARIANTS --- */
+.btnDanger { 
+  background-color: var(--danger-color); 
+  color: white; 
+}
+.btnDanger:hover { 
+  background-color: #dc2626; 
+}
+
 /* --- RESPONSIVE STYLES --- */
 @media (min-width: 640px) {
   .btnUploadMobile { display: none; }

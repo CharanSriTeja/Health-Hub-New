@@ -82,6 +82,100 @@
 .emptyState h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
 .emptyState p { color: var(--secondary-color); }
 
+/* --- LOADING STATE --- */
+.loadingState { 
+  text-align: center; 
+  padding: 4rem 2rem; 
+  color: var(--secondary-color); 
+}
+.spinner { 
+  width: 40px; 
+  height: 40px; 
+  border: 3px solid var(--border-color); 
+  border-top: 3px solid var(--primary-color); 
+  border-radius: 50%; 
+  animation: spin 1s linear infinite; 
+  margin: 0 auto 1rem; 
+}
+@keyframes spin { 
+  0% { transform: rotate(0deg); } 
+  100% { transform: rotate(360deg); } 
+}
+
+/* --- FORM STYLES --- */
+.formGroup { 
+  margin-bottom: 1.5rem; 
+}
+.formRow { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 1rem; 
+}
+.formGroup label { 
+  display: block; 
+  margin-bottom: 0.5rem; 
+  color: var(--text-color); 
+  font-weight: 500; 
+}
+.formInput, .formTextarea { 
+  width: 100%; 
+  padding: 0.75rem; 
+  border-radius: 0.5rem; 
+  background-color: var(--card-background); 
+  border: 1px solid var(--border-color); 
+  color: var(--text-color); 
+  font-size: 0.9rem; 
+  box-sizing: border-box; 
+  transition: border-color 0.2s; 
+}
+.formInput:focus, .formTextarea:focus { 
+  outline: none; 
+  border-color: var(--primary-color); 
+}
+.formTextarea { 
+  resize: vertical; 
+  min-height: 80px; 
+}
+
+/* --- MEDICATION FORM --- */
+.medicationHeader { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 1rem; 
+}
+.medicationForm { 
+  background-color: var(--background-color); 
+  padding: 1rem; 
+  border-radius: 0.5rem; 
+  margin-bottom: 1rem; 
+  border: 1px solid var(--border-color); 
+}
+.btnSmall { 
+  padding: 0.5rem 1rem; 
+  font-size: 0.875rem; 
+}
+
+/* --- MODAL UPDATES --- */
+.modalActions { 
+  display: flex; 
+  gap: 1rem; 
+  justify-content: flex-end; 
+  margin-top: 2rem; 
+  padding-top: 1.5rem; 
+  border-top: 1px solid var(--border-color); 
+}
+.detailRow { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 0.5rem 0; 
+  border-bottom: 1px solid var(--border-color); 
+}
+.detailRow:last-child { 
+  border-bottom: none; 
+}
+
 /* --- RESPONSIVENESS --- */
 @media (max-width: 768px) {
   .prescriptionsPage { padding: 1rem; }

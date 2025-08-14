@@ -88,6 +88,10 @@ const hospitalSchema = new mongoose.Schema({
         'NICU',
         'Laboratory',
         'Pharmacy',
+        'Neonatology',
+        'Pediatric Surgery',
+        'Pediatric Cardiology',
+        'Pediatric Neurology',
         'Other'
       ]
     },

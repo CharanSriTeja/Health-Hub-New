@@ -1,55 +1,18 @@
 const express = require('express');
 const router = express.Router();
+const prescriptionController = require('../controllers/prescriptionController');
 const { authenticateToken } = require('../middleware/auth');
-const { 
-  validatePrescriptionCreation, 
-  validateObjectId, 
-  validatePagination, 
-  validateSearchQuery 
-} = require('../middleware/validation');
 
-// Placeholder for prescription controller
-const prescriptionController = {
-  createPrescription: async (req, res) => {
-    res.status(501).json({ error: 'Prescription creation not implemented yet' });
-  },
-  getPrescriptions: async (req, res) => {
-    res.status(501).json({ error: 'Get prescriptions not implemented yet' });
-  },
-  getPrescriptionById: async (req, res) => {
-    res.status(501).json({ error: 'Get prescription by ID not implemented yet' });
-  },
-  updatePrescription: async (req, res) => {
-    res.status(501).json({ error: 'Update prescription not implemented yet' });
-  },
-  deletePrescription: async (req, res) => {
-    res.status(501).json({ error: 'Delete prescription not implemented yet' });
-  }
-};
+// Public routes (for authenticated users)
+router.get('/', authenticateToken, prescriptionController.getAllPrescriptions);
+router.get('/stats', authenticateToken, prescriptionController.getPrescriptionStats);
+router.get('/export', authenticateToken, prescriptionController.exportPrescriptions);
+router.get('/:id', authenticateToken, prescriptionController.getPrescriptionById);
 
-// @route   POST /api/prescriptions
-// @desc    Create new prescription
-// @access  Private
-router.post('/', authenticateToken, validatePrescriptionCreation, prescriptionController.createPrescription);
-
-// @route   GET /api/prescriptions
-// @desc    Get all prescriptions (with filtering and pagination)
-// @access  Private
-router.get('/', authenticateToken, validatePagination, validateSearchQuery, prescriptionController.getPrescriptions);
-
-// @route   GET /api/prescriptions/:id
-// @desc    Get single prescription by ID
-// @access  Private
-router.get('/:id', authenticateToken, validateObjectId, prescriptionController.getPrescriptionById);
-
-// @route   PUT /api/prescriptions/:id
-// @desc    Update prescription
-// @access  Private
-router.put('/:id', authenticateToken, validateObjectId, prescriptionController.updatePrescription);
-
-// @route   DELETE /api/prescriptions/:id
-// @desc    Delete prescription
-// @access  Private
-router.delete('/:id', authenticateToken, validateObjectId, prescriptionController.deletePrescription);
+// Protected routes
+router.post('/', authenticateToken, prescriptionController.createPrescription);
+router.put('/:id', authenticateToken, prescriptionController.updatePrescription);
+router.delete('/:id', authenticateToken, prescriptionController.deletePrescription);
+router.post('/:id/share', authenticateToken, prescriptionController.sharePrescription);
 
 module.exports = router;
